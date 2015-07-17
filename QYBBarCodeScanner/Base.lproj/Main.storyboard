@@ -1,0 +1,54 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="7702" systemVersion="14C109" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" initialViewController="vXZ-lx-hvc">
+    <dependencies>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="7701"/>
+        <capability name="Constraints to layout margins" minToolsVersion="6.0"/>
+    </dependencies>
+    <scenes>
+        <!--View Controller-->
+        <scene sceneID="ufC-wZ-h7g">
+            <objects>
+                <viewController id="vXZ-lx-hvc" customClass="ViewController" sceneMemberID="viewController">
+                    <layoutGuides>
+                        <viewControllerLayoutGuide type="top" id="jyV-Pf-zRb"/>
+                        <viewControllerLayoutGuide type="bottom" id="2fi-mo-0CV"/>
+                    </layoutGuides>
+                    <view key="view" contentMode="scaleToFill" id="kh9-bI-dsS">
+                        <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
+                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                        <subviews>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="此处会显示扫描结果" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="9ER-Bb-Ayb">
+                                <rect key="frame" x="0.0" y="559" width="600" height="21"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                <color key="textColor" red="1" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="giN-Lm-IqN">
+                                <rect key="frame" x="255" y="521" width="90" height="30"/>
+                                <state key="normal" title="点击开始扫码">
+                                    <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
+                                </state>
+                                <connections>
+                                    <action selector="startBarCodeScanner:" destination="vXZ-lx-hvc" eventType="touchUpInside" id="qCX-Um-Pyk"/>
+                                </connections>
+                            </button>
+                        </subviews>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
+                        <constraints>
+                            <constraint firstAttribute="centerX" secondItem="giN-Lm-IqN" secondAttribute="centerX" id="Dbe-OX-KYb"/>
+                            <constraint firstItem="9ER-Bb-Ayb" firstAttribute="leading" secondItem="kh9-bI-dsS" secondAttribute="leadingMargin" constant="-16" id="I0j-7P-f1j"/>
+                            <constraint firstAttribute="trailingMargin" secondItem="9ER-Bb-Ayb" secondAttribute="trailing" constant="-16" id="QRx-lo-amN"/>
+                            <constraint firstItem="9ER-Bb-Ayb" firstAttribute="top" secondItem="giN-Lm-IqN" secondAttribute="bottom" constant="8" id="oVA-uf-FRC"/>
+                            <constraint firstItem="2fi-mo-0CV" firstAttribute="top" secondItem="9ER-Bb-Ayb" secondAttribute="bottom" constant="20" id="xmU-Qk-6nh"/>
+                        </constraints>
+                    </view>
+                    <connections>
+                        <outlet property="_resultLabel" destination="9ER-Bb-Ayb" id="7Q0-vs-WD9"/>
+                        <outlet property="resultLabel" destination="9ER-Bb-Ayb" id="Krt-5K-jHK"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="x5A-6p-PRh" sceneMemberID="firstResponder"/>
+            </objects>
+        </scene>
+    </scenes>
+</document>
