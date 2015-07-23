@@ -7,6 +7,9 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		1CCC343B1B608F270005F5B9 /* QYBBarCodeScannerVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 1CCC34361B608F270005F5B9 /* QYBBarCodeScannerVC.m */; };
+		1CCC343C1B608F270005F5B9 /* QYBSquareOverLayer.m in Sources */ = {isa = PBXBuildFile; fileRef = 1CCC34381B608F270005F5B9 /* QYBSquareOverLayer.m */; };
+		1CCC343D1B608F270005F5B9 /* line@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 1CCC343A1B608F270005F5B9 /* line@2x.png */; };
 		1CE060EE1B58939B00422A11 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 1CE060ED1B58939B00422A11 /* main.m */; };
 		1CE060F11B58939B00422A11 /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 1CE060F01B58939B00422A11 /* AppDelegate.m */; };
 		1CE060F41B58939B00422A11 /* ViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 1CE060F31B58939B00422A11 /* ViewController.m */; };
@@ -15,8 +18,6 @@
 		1CE060FC1B58939B00422A11 /* LaunchScreen.xib in Resources */ = {isa = PBXBuildFile; fileRef = 1CE060FA1B58939B00422A11 /* LaunchScreen.xib */; };
 		1CE061081B58939C00422A11 /* QYBBarCodeScannerTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 1CE061071B58939C00422A11 /* QYBBarCodeScannerTests.m */; };
 		1CE061121B5893C000422A11 /* AVFoundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 1CE061111B5893C000422A11 /* AVFoundation.framework */; };
-		1CE061141B58C59200422A11 /* line@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 1CE061131B58C59200422A11 /* line@2x.png */; };
-		1CE061171B58D10600422A11 /* QYBSquareOverLayer.m in Sources */ = {isa = PBXBuildFile; fileRef = 1CE061161B58D10600422A11 /* QYBSquareOverLayer.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -30,6 +31,11 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		1CCC34351B608F270005F5B9 /* QYBBarCodeScannerVC.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = QYBBarCodeScannerVC.h; sourceTree = "<group>"; };
+		1CCC34361B608F270005F5B9 /* QYBBarCodeScannerVC.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = QYBBarCodeScannerVC.m; sourceTree = "<group>"; };
+		1CCC34371B608F270005F5B9 /* QYBSquareOverLayer.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = QYBSquareOverLayer.h; sourceTree = "<group>"; };
+		1CCC34381B608F270005F5B9 /* QYBSquareOverLayer.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = QYBSquareOverLayer.m; sourceTree = "<group>"; };
+		1CCC343A1B608F270005F5B9 /* line@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "line@2x.png"; sourceTree = "<group>"; };
 		1CE060E81B58939B00422A11 /* QYBBarCodeScanner.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = QYBBarCodeScanner.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		1CE060EC1B58939B00422A11 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		1CE060ED1B58939B00422A11 /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
@@ -44,9 +50,6 @@
 		1CE061061B58939C00422A11 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		1CE061071B58939C00422A11 /* QYBBarCodeScannerTests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = QYBBarCodeScannerTests.m; sourceTree = "<group>"; };
 		1CE061111B5893C000422A11 /* AVFoundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AVFoundation.framework; path = System/Library/Frameworks/AVFoundation.framework; sourceTree = SDKROOT; };
-		1CE061131B58C59200422A11 /* line@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "line@2x.png"; sourceTree = "<group>"; };
-		1CE061151B58D10600422A11 /* QYBSquareOverLayer.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = QYBSquareOverLayer.h; sourceTree = "<group>"; };
-		1CE061161B58D10600422A11 /* QYBSquareOverLayer.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = QYBSquareOverLayer.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -68,6 +71,26 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		1CCC34341B608F270005F5B9 /* QYBBarCodeScanner */ = {
+			isa = PBXGroup;
+			children = (
+				1CCC34351B608F270005F5B9 /* QYBBarCodeScannerVC.h */,
+				1CCC34361B608F270005F5B9 /* QYBBarCodeScannerVC.m */,
+				1CCC34371B608F270005F5B9 /* QYBSquareOverLayer.h */,
+				1CCC34381B608F270005F5B9 /* QYBSquareOverLayer.m */,
+				1CCC34391B608F270005F5B9 /* resource */,
+			);
+			path = QYBBarCodeScanner;
+			sourceTree = "<group>";
+		};
+		1CCC34391B608F270005F5B9 /* resource */ = {
+			isa = PBXGroup;
+			children = (
+				1CCC343A1B608F270005F5B9 /* line@2x.png */,
+			);
+			path = resource;
+			sourceTree = "<group>";
+		};
 		1CE060DF1B58939B00422A11 = {
 			isa = PBXGroup;
 			children = (
@@ -90,12 +113,11 @@
 		1CE060EA1B58939B00422A11 /* QYBBarCodeScanner */ = {
 			isa = PBXGroup;
 			children = (
+				1CCC34341B608F270005F5B9 /* QYBBarCodeScanner */,
 				1CE060EF1B58939B00422A11 /* AppDelegate.h */,
 				1CE060F01B58939B00422A11 /* AppDelegate.m */,
 				1CE060F21B58939B00422A11 /* ViewController.h */,
 				1CE060F31B58939B00422A11 /* ViewController.m */,
-				1CE061151B58D10600422A11 /* QYBSquareOverLayer.h */,
-				1CE061161B58D10600422A11 /* QYBSquareOverLayer.m */,
 				1CE060F51B58939B00422A11 /* Main.storyboard */,
 				1CE060F81B58939B00422A11 /* Images.xcassets */,
 				1CE060FA1B58939B00422A11 /* LaunchScreen.xib */,
@@ -107,7 +129,6 @@
 		1CE060EB1B58939B00422A11 /* Supporting Files */ = {
 			isa = PBXGroup;
 			children = (
-				1CE061131B58C59200422A11 /* line@2x.png */,
 				1CE060EC1B58939B00422A11 /* Info.plist */,
 				1CE060ED1B58939B00422A11 /* main.m */,
 			);
@@ -211,7 +232,7 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				1CE061141B58C59200422A11 /* line@2x.png in Resources */,
+				1CCC343D1B608F270005F5B9 /* line@2x.png in Resources */,
 				1CE060F71B58939B00422A11 /* Main.storyboard in Resources */,
 				1CE060FC1B58939B00422A11 /* LaunchScreen.xib in Resources */,
 				1CE060F91B58939B00422A11 /* Images.xcassets in Resources */,
@@ -233,9 +254,10 @@
 			buildActionMask = 2147483647;
 			files = (
 				1CE060F41B58939B00422A11 /* ViewController.m in Sources */,
-				1CE061171B58D10600422A11 /* QYBSquareOverLayer.m in Sources */,
 				1CE060F11B58939B00422A11 /* AppDelegate.m in Sources */,
 				1CE060EE1B58939B00422A11 /* main.m in Sources */,
+				1CCC343B1B608F270005F5B9 /* QYBBarCodeScannerVC.m in Sources */,
+				1CCC343C1B608F270005F5B9 /* QYBSquareOverLayer.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -432,6 +454,7 @@
 				1CE0610D1B58939C00422A11 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 		1CE0610E1B58939C00422A11 /* Build configuration list for PBXNativeTarget "QYBBarCodeScannerTests" */ = {
 			isa = XCConfigurationList;
@@ -440,6 +463,7 @@
 				1CE061101B58939C00422A11 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
 	};

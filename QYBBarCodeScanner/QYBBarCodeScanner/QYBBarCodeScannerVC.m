@@ -1,42 +1,57 @@
 //
-//  ViewController.m
+//  QYBBarCodeScannerVC.m
 //  QYBBarCodeScanner
 //
-//  Created by qianyb on 15/7/17.
+//  Created by qianyb on 15/7/23.
 //  Copyright (c) 2015年 qianyb. All rights reserved.
 //
-//  参考：http://blog.cnbluebox.com/blog/2014/08/26/ioser-wei-ma-sao-miao/
-//
 
-#import "ViewController.h"
+#import "QYBBarCodeScannerVC.h"
 #import "QYBSquareOverLayer.h"
 #import <AVFoundation/AVFoundation.h>
 
+#ifndef Screen_Width
 #define Screen_Width    CGRectGetWidth([[UIScreen mainScreen] bounds])
+#endif
 
+#ifndef Screen_Height
 #define Screen_Height   CGRectGetHeight([[UIScreen mainScreen] bounds])
+#endif
 
 #define Preview_Rect    (self.view.layer.bounds)
 
 #define Crop_Rect       CGRectMake(CGRectGetWidth(Preview_Rect)/4, CGRectGetHeight(Preview_Rect)/4, CGRectGetWidth(Preview_Rect)/2, CGRectGetWidth(Preview_Rect)/2)
 
-@interface ViewController ()<AVCaptureMetadataOutputObjectsDelegate>
+@interface QYBBarCodeScannerVC ()<AVCaptureMetadataOutputObjectsDelegate>
 
-@property (weak, nonatomic) IBOutlet UILabel *resultLabel;
 @end
 
-@implementation ViewController{
+@implementation QYBBarCodeScannerVC{
     
     AVCaptureVideoPreviewLayer *videoPreviewLayer;
     
     AVCaptureSession *captureSession;
     
     AVCaptureDevice *captureDevice;
+    
+    CALayer *scannerLine;
 }
 
 - (void)viewDidLoad {
     [super viewDidLoad];
-    // Do any additional setup after loading the view, typically from a nib.
+    // Do any additional setup after loading the view.
+    
+    if (CGRectGetHeight(_cropRect) == 0) {
+        _cropRect = Crop_Rect;
+    }
+    
+    [self initAndRunBarCodeScanner];
+}
+
+- (void)viewDidAppear:(BOOL)animated{
+    [super viewDidAppear:animated];
+    
+    [self addAnimationToScannerLine];
 }
 
 - (void)didReceiveMemoryWarning {
@@ -44,13 +59,7 @@
     // Dispose of any resources that can be recreated.
 }
 
-- (IBAction)startBarCodeScanner:(id)sender {
-    
-    if (captureSession.isRunning) {
-        NSLog(@"Scanner 已经开始扫描了！");
-        return;
-    }
-    
+- (void)initAndRunBarCodeScanner{
     if (!captureSession) {
         captureDevice = [AVCaptureDevice defaultDeviceWithMediaType:AVMediaTypeVideo];
         
@@ -78,7 +87,7 @@
         [captureMetadataOutput setMetadataObjectsDelegate:self queue:dispatchQueue];
         
         //设置只扫描某个固定的区域
-        captureMetadataOutput.rectOfInterest = [self transformRect:Crop_Rect toRectOfInterestWithVideoLayerRect:Preview_Rect];
+        captureMetadataOutput.rectOfInterest = [self transformRect:_cropRect toRectOfInterestWithVideoLayerRect:Preview_Rect];
         
         //配置captureSession
         captureSession = [[AVCaptureSession alloc] init];
@@ -133,16 +142,16 @@
 - (void)addForcusLayerToPreviewLayer{
     //中间的扫描框
     QYBSquareOverLayer *squareOverLayer = [[QYBSquareOverLayer alloc] init];
-    squareOverLayer.frame = Crop_Rect;
+    squareOverLayer.frame = _cropRect;
     squareOverLayer.borderColor = [[UIColor colorWithRed:1 green:1 blue:1 alpha:0.5] CGColor];
     squareOverLayer.borderWidth = 2;
     [squareOverLayer display];
     
     //添加扫描框中间的扫描线
-    CALayer *scanLine = [[CALayer alloc] init];
-    scanLine.frame = CGRectMake(0, 4, CGRectGetWidth(squareOverLayer.bounds), 4);
-    scanLine.contents = (__bridge id)[[UIImage imageNamed:@"line"] CGImage];
-    [squareOverLayer addSublayer:scanLine];
+    scannerLine = [[CALayer alloc] init];
+    scannerLine.frame = CGRectMake(0, 4, CGRectGetWidth(squareOverLayer.bounds), 4);
+    scannerLine.contents = (__bridge id)[[UIImage imageNamed:@"line"] CGImage];
+    [squareOverLayer addSublayer:scannerLine];
     [videoPreviewLayer addSublayer:squareOverLayer];
     
     //左边的覆盖物
@@ -166,15 +175,17 @@
     [videoPreviewLayer addSublayer:bottomOverLayer];
     
     leftOverLayer.backgroundColor = rightOverLayer.backgroundColor = topOverLayer.backgroundColor = bottomOverLayer.backgroundColor = [[UIColor colorWithRed:0 green:0 blue:0 alpha:0.7] CGColor];
-    
+}
+
+- (void)addAnimationToScannerLine{
     //给中间的扫描框添加扫描动画
     CABasicAnimation *basicAnimation = [CABasicAnimation animationWithKeyPath:@"position"];
-    basicAnimation.toValue = [NSValue valueWithCGPoint:CGPointMake(scanLine.position.x, CGRectGetHeight(squareOverLayer.bounds) - 6)];
+    basicAnimation.toValue = [NSValue valueWithCGPoint:CGPointMake(scannerLine.position.x, CGRectGetHeight(_cropRect) - 6)];
     basicAnimation.duration = 2.0;
     basicAnimation.autoreverses = YES;
     //设置重复次数,HUGE_VALF可看做无穷大，起到循环动画的效果
     basicAnimation.repeatCount = HUGE_VALF;
-    [scanLine addAnimation:basicAnimation forKey:@"kBasicAnimation_Transition"];
+    [scannerLine addAnimation:basicAnimation forKey:@"kBasicAnimation_Transition"];
 }
 
 - (CGRect)transformRect:(CGRect)rect toRectOfInterestWithVideoLayerRect:(CGRect)videoRect{
@@ -205,11 +216,14 @@
         
         //切回主线程更新视图,停止扫描并释放对设备硬件的控制锁定
         dispatch_async(dispatch_get_main_queue(), ^{
-            _resultLabel.text = metadataObj.stringValue;
-            
             [captureSession stopRunning];
             [videoPreviewLayer removeFromSuperlayer];
             [captureDevice unlockForConfiguration];
+            
+            if ([self.delegate respondsToSelector:@selector(didCaptureInfoInBarCode:)]) {
+                [self.delegate didCaptureInfoInBarCode:metadataObj.stringValue];
+            }
+            [self dismissViewControllerAnimated:YES completion:nil];
         });
     }
 }
